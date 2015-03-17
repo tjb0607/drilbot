@@ -81,12 +81,12 @@ def IrcBot(server, channel, botnick):
                 IrcSend("JOIN "+ channel, irc, st)
                 IrcSend("PRIVMSG NickServ :IDENTIFY " + botpass, irc, st)
                 tweetLoopProcess.start()
-            elif re.search("PRIVMSG " + channel + ' :' + botnick + ': url', line, re.IGNORECASE):
+            elif re.search("PRIVMSG " + channel + ' :' + botnick + ': (url|link)', line, re.IGNORECASE):
                 IrcSend("PRIVMSG " + channel + " :" + "https://twitter.com/dril/status/" + str(tweetnum), irc, st)
             elif re.search("PRIVMSG " + channel + ' :' + botnick + ': post', line, re.IGNORECASE):
                 RandomDrilTweet(irc, st, channel)
                 next_msg = time.time() + interval
-            elif re.search("PRIVMSG " + botnick + ' :url', line, re.IGNORECASE):
+            elif re.search("PRIVMSG " + botnick + ' :(url|link)', line, re.IGNORECASE):
                 IrcSend("PRIVMSG " + line.split('!')[0][1:] + " :https://twitter.com/dril/status/" + str(tweetnum), irc, st)
             elif re.search("^:(tjb0607|tinaun|maryxus|rafe)!.* PRIVMSG " + botnick  + " :interval (\d+)$", line, re.IGNORECASE):
                 interval = int(line.split(' ')[-1])
