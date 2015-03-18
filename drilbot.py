@@ -120,5 +120,5 @@ def IrcBot(server, channel, botnick):
                 IrcSend("PRIVMSG " + line.split('!')[0][1:] + " :`url` returns the url of the last tweet, `post` posts a new random tweet, and `interval` prints the current message interval in seconds. Admin commands are `reset` to reset the timer, and `interval <seconds>` to set the interval. Only tjb0607, can use admin commands.", irc)
     return
 
-IrcBot("irc.synirc.net", "#bottest", "drilbot2")
-#IrcBot("irc.synirc.net", "#homestuck", "drilbot")
+#IrcBot("irc.synirc.net", "#bottest", "drilbot2")
+IrcBot("irc.synirc.net", "#homestuck", "drilbot")
