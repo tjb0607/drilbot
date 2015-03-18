@@ -117,7 +117,7 @@ def IrcBot(server, channel, botnick):
                     next_msg = time.time() + interval
                     IrcSend("PRIVMSG " + nick + " :timer reset", irc)
             elif re.search("PRIVMSG " + botnick + " :help", line, re.IGNORECASE):
-                IrcSend("PRIVMSG " + line.split('!')[0][1:] + " :`url` returns the url of the last tweet, `post` posts a new random tweet, and `interval` prints the current message interval in seconds. Admin commands are `reset` to reset the timer, and `interval <seconds>` to set the interval. Only tjb0607, can use admin commands.", irc)
+                IrcSend("PRIVMSG " + line.split('!')[0][1:] + " :`url` returns the url of the last tweet, `post` posts a new random tweet, and `interval` prints the current message interval in seconds. Admin commands are `reset` to reset the timer, and `interval <seconds>` to set the interval. Only tjb0607, tinaun, maryxus, and rafe can use admin commands.", irc)
     return
 
 #IrcBot("irc.synirc.net", "#bottest", "drilbot2")
