@@ -49,6 +49,8 @@ def IrcSend(string, irc):
 def IsRegistered(nick, irc):
     IrcSend("WHO " + nick, irc)
     text = irc.recv(2048).decode('utf-8')
+    ts = time.time()
+    st = datetime.fromtimestamp(ts).strftime('%H:%M:%S')
     for line in text.split('\r\n'):
         print(st + " [ IRC ] <-- " + line)
         if re.search("352 [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]*r[^ ]* ", line.split(":")[1]):
@@ -118,5 +120,5 @@ def IrcBot(server, channel, botnick):
                 IrcSend("PRIVMSG " + line.split('!')[0][1:] + " :`url` returns the url of the last tweet, `post` posts a new random tweet, and `interval` prints the current message interval in seconds. Admin commands are `reset` to reset the timer, and `interval <seconds>` to set the interval. Only tjb0607, can use admin commands.", irc)
     return
 
-#IrcBot("irc.synirc.net", "#bottest", "drilbot2")
-IrcBot("irc.synirc.net", "#homestuck", "drilbot")
+IrcBot("irc.synirc.net", "#bottest", "drilbot2")
+#IrcBot("irc.synirc.net", "#homestuck", "drilbot")
