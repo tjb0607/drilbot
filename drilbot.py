@@ -15,13 +15,14 @@ next_msg = time.time() + 500  # unix timestamp of next time to post
 def RandomDrilTweet(irc, st, channel):
     driltxt = open('dril.txt') 
     num_lines = sum(1 for line in driltxt)
-    linenum = random.randint(1, num_lines) - 1
+    linenum = random.randint(1, num_lines)
     line = linecache.getline('dril.txt', linenum)
     while re.search('(\d{4}\|(RT )?@)|fag|nigg(a|er)|retard', line, re.IGNORECASE):    # don't post retweets, replies, or anything with slurs
-        linenum = random.randint(1, num_lines) - 1
+        linenum = random.randint(1, num_lines)
         line = linecache.getline('dril.txt', linenum)
     line = html.unescape(line)
     driltxt.close()
+    print("linenum: " + str(linenum))
     matchObj = re.search('(\d+)\|([^\|]+)\|(.*)', line)
     IrcSend("PRIVMSG " + channel + " :" + matchObj.group(3), irc, st)
     global tweetnum
