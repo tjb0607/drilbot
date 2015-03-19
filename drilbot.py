@@ -53,7 +53,7 @@ def IsRegistered(nick, irc):
     st = datetime.fromtimestamp(ts).strftime('%H:%M:%S')
     for line in text.split('\r\n'):
         print(st + " [ IRC ] <-- " + line)
-        if re.search("352 [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]*r[^ ]* ", line.split(":")[1]):
+        if re.search("352 [^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+ " + nick + " [^ ]*r[^ ]* ", line.split(":")[1]):
             return True
         else:
             IrcSend("PRIVMSG " + nick + " :Error: you must be registered with NickServ to use admin commands.", irc)
