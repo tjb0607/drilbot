@@ -95,9 +95,9 @@ def IrcBot(server, channel, botnick):
                 IrcSend("JOIN "+ channel, irc)
                 IrcSend("PRIVMSG NickServ :IDENTIFY " + botpass, irc)
                 tweetLoopProcess.start()
-            elif re.search("^:[^ ]+ PRIVMSG " + channel + ' :' + botnick + ': (url|link)', line, re.IGNORECASE):
+            elif re.search("^:[^ ]+ PRIVMSG " + channel + ' :' + botnick + '.? (url|link)', line, re.IGNORECASE):
                 IrcSend("PRIVMSG " + channel + " :" + "https://twitter.com/dril/status/" + str(tweetnum), irc)
-            elif re.search("^:[^ ]+ PRIVMSG " + channel + ' :' + botnick + ': post', line, re.IGNORECASE):
+            elif re.search("^:[^ ]+ PRIVMSG " + channel + ' :' + botnick + '.? post', line, re.IGNORECASE):
                 RandomDrilTweet(irc, channel)
                 next_msg = time.time() + interval
             elif re.search("^:[^ ]+ PRIVMSG " + channel + " :shut up " + botnick, line, re.IGNORECASE):
