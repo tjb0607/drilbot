@@ -17,6 +17,7 @@ def RandomDrilTweet(irc, channel):
     num_lines = sum(1 for line in driltxt)
     linenum = random.randint(1, num_lines)
     line = linecache.getline('dril.txt', linenum)
+    line = html.unescape(line)
     matchObj = re.search('(\d+)\|([^\|]+)\|(.*)', line)
     while re.search('(\d{4}\|(RT )?@)|fag|nigg(a|er)|retard', line, re.IGNORECASE) or not(matchObj):    # don't post retweets, replies, or anything with slurs
         linenum = random.randint(1, num_lines)
